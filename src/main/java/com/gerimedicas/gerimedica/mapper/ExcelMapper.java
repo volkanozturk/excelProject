@@ -12,7 +12,15 @@ import java.util.List;
 public class ExcelMapper {
 
 	public static ExcelDto toDto(Excel excel) {
-		return ExcelDto.builder().source(excel.getSource()).codeListCode(excel.getCodeListCode()).code(excel.getCode()).displayValue(excel.getDisplayValue()).longDescription(excel.getLongDescription()).fromDate(excel.getFromDate()).toDate(excel.getToDate()).sortingPriority(excel.getSortingPriority()).build();
+		return ExcelDto.builder()
+				.source(excel.getSource())
+				.codeListCode(excel.getCodeListCode())
+				.code(excel.getCode())
+				.displayValue(excel.getDisplayValue())
+				.longDescription(excel.getLongDescription())
+				.fromDate(excel.getFromDate()).toDate(excel.getToDate())
+				.sortingPriority(excel.getSortingPriority())
+				.build();
 	}
 
 	public static List<ExcelDto> toDto(List<Excel> excelList) {
