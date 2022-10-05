@@ -31,6 +31,15 @@ public class GlobalRestExceptionHandler {
 				.build());
 	}
 
+	@ExceptionHandler(value = {ExcelNotFoundException.class})
+	public ResponseEntity<GenericResponse> handleExcelNotFoundException(ExcelNotFoundException ex) {
+		return responseEntity(GenericResponse.builder()
+				.status(HttpStatus.NOT_FOUND.value())
+				.successful(false)
+				.message("Excel could not be found")
+				.build());
+	}
+
 	@ExceptionHandler(value = {UnsupportedExcelVersionException.class})
 	public ResponseEntity<GenericResponse> handleUnsupportedExcelVersionException(UnsupportedExcelVersionException ex) {
 		return responseEntity(GenericResponse.builder()

@@ -1,5 +1,6 @@
 package com.gerimedicas.gerimedica.controller;
 
+import com.gerimedicas.gerimedica.annotation.ApiLogger;
 import com.gerimedicas.gerimedica.dto.ExcelDto;
 import com.gerimedicas.gerimedica.exception.ExcelNotFoundException;
 import com.gerimedicas.gerimedica.exception.UnsupportedExcelVersionException;
@@ -27,9 +28,8 @@ public class ExcelController {
 	public ExcelController(ExcelService excelService) {
 		this.excelService = excelService;
 	}
-
 	@PostMapping("/upload")
-	public GenericResponse uploadFile(@RequestParam MultipartFile file) throws UnsupportedExcelVersionException {
+	public GenericResponse uploadFile(@RequestParam("file")  MultipartFile file) throws UnsupportedExcelVersionException {
 		excelService.upload(file);
 		return GenericResponse.successful();
 	}
@@ -40,7 +40,7 @@ public class ExcelController {
 		List<ExcelDto> allExcelInfos = excelService.getAllExcelInfos(page, size);
 		return GenericResponse.successful(allExcelInfos);
 	}
-
+	@ApiLogger
 	@GetMapping(value = "/{code}")
 	public GenericResponse<ExcelDto> getInfoByCode(@NotNull @PathVariable String code) throws ExcelNotFoundException {
 		ExcelDto excelInfoByCode = excelService.getExcelInfoByCode(code);
